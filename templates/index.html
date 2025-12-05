@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎓 Course Recommendation System</h1>
+            <p class="subtitle">Upload your resume and get personalized course recommendations</p>
+        </header>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.total_courses }}</div>
+                <div class="stat-label">Total Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ "%.1f"|format(stats.avg_rating) }}</div>
+                <div class="stat-label">Avg Rating</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.free_courses }}</div>
+                <div class="stat-label">Free Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.paid_courses }}</div>
+                <div class="stat-label">Paid Courses</div>
+            </div>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-box">
+                <div class="upload-icon">📄</div>
+                <h2>Upload Your Resume</h2>
+                <p>Supports PDF and DOCX formats (Max 16MB)</p>
+                
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" id="resumeFile" name="resume" accept=".pdf,.docx,.doc" required>
+                    <label for="resumeFile" class="file-label">
+                        <span id="fileName">Choose File</span>
+                    </label>
+                    <button type="submit" class="btn-primary" id="uploadBtn">
+                        Analyze Resume & Get Recommendations
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-container" id="loadingContainer" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing your resume and finding the best courses...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-container" id="errorContainer" style="display: none;">
+            <div class="error-message">
+                <span class="error-icon">⚠️</span>
+                <span id="errorMessage"></span>
+            </div>
+            <button class="btn-secondary" onclick="resetForm()">Try Again</button>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <!-- Resume Analysis -->
+            <div class="analysis-container">
+                <h2>📊 Resume Analysis</h2>
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <h3>Experience Level</h3>
+                        <p class="experience-badge" id="experienceLevel"></p>
+                    </div>
+                    <div class="analysis-card">
+                        <h3>Skills Identified</h3>
+                        <p class="skill-count" id="skillCount"></p>
+                    </div>
+                    <div class="analysis-card">
+                        <h3>Primary Domains</h3>
+                        <div id="domainsList"></div>
+                    </div>
+                    <div class="analysis-card">
+                        <h3>Top Skills</h3>
+                        <div id="skillsList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="recommendations-container">
+                <h2>🎯 Recommended Courses (<span id="recCount"></span>)</h2>
+                <div id="recommendationsList"></div>
+            </div>
+
+            <button class="btn-secondary" onclick="resetForm()">Upload Another Resume</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

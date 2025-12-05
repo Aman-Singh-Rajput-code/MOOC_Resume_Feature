@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+
+# Virtual envs
+venv/
+.env/
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor configs
+.vscode/
+.idea/
+
+# Uploaded resume files
+static/uploads/
+
+# Other
+*.zip
