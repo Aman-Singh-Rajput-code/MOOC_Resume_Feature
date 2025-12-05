@@ -12,3 +12,4 @@ textblob==0.17.1
 
 # Note: After installing requirements, run:
 # python -m spacy download en_core_web_sm
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
