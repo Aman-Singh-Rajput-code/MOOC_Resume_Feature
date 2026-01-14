@@ -98,7 +98,7 @@ def upload_resume():
 def format_recommendations(recommendations):
     """Format recommendations for frontend display"""
     formatted = []
-    
+
     for rec in recommendations:
         formatted.append({
             'course_id': rec.get('course_id', ''),
@@ -110,11 +110,19 @@ def format_recommendations(recommendations):
             'enrolled': int(rec.get('Number_of_student_enrolled', 0)),
             'match_percentage': rec.get('match_percentage', 0),
             'match_reasons': rec.get('match_reasons', []),
+
+            # ✅ ADD THIS (IMPORTANT)
+            'course_url': (
+                rec.get('course_url')
+                or rec.get('course_link')
+                or rec.get('url')
+                or ''
+            ),
+
             'sources': rec.get('sources', [])
         })
-    
     return formatted
-
+    
 @app.route('/api/courses')
 def get_courses():
     """API endpoint to get all courses"""
