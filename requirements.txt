@@ -10,6 +10,8 @@ werkzeug==3.0.1
 # For sentiment analysis (optional but recommended)
 textblob==0.17.1
 gunicorn==21.2.0
+flask-cors==4.0.0
+
 
 # Note: After installing requirements, run:
 # python -m spacy download en_core_web_sm
